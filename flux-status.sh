@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-aliases="alias toolbox='bash -i <(curl -s https://raw.githubusercontent.com/RunOnFlux/fluxnode-multitool/master/multitoolbox.sh)';alias status='flux-cli getzelnodestatus';alias benchmarks='flux-cli getbenchmarks';alias restart_zelcash='sudo systemctl restart zelcash';alias restartbenchmarks='fluxbench-cli restartnodebenchmarks';alias watch_logs='pm2 monit';alias restart_watchdog='pm2 reload watchdog --watch'"
+aliases="alias toolbox='bash -i <(curl -s https://raw.githubusercontent.com/RunOnFlux/fluxnode-multitool/master/multitoolbox.sh)';alias status='flux-cli getzelnodestatus';alias benchmarks='flux-cli getbenchmarks';alias restart_zelcash='sudo systemctl restart zelcash';alias restart_benchmarks='fluxbench-cli restartnodebenchmarks';alias watch_logs='pm2 monit';alias restart_watchdog='pm2 reload watchdog --watch'"
 IFS=';' read -ra aliases_array <<< "$aliases"
 echo "adding aliases to profile....."
 #Iterate the loop to read and check if exists and/or add aliases to .profile
@@ -21,7 +20,23 @@ echo "adding aliases to profile....."
     
     #echo "$value" 
   done
-  
+
+aliaslist="toolbox;status;benchmarks;restart_zelcash;restart_benchmarks;watch_logs;restart_watchdog"
+IFS=';' read -ra aliaslist_array <<< "$aliaslist"
+  for aliasvalue
+  in "${aliaslist_array[@]}"
+  do
+    ifAliasExist=$(cat ~/.profile | grep -c "$aliasvalue")
+    if [ $ifAliasExist -eq 1 ]; then
+      #string not contained in file
+      echo "echo 'avaliable short command: $aliasvalue'" >> ~/.bashrc
+      
+    else
+      #string is in file at least once
+      echo "already found $aliasvalue, not installing"
+    fi
+
+  done
 
 #add cmds to launch on ssh login for status update
 commands="flux-cli getzelnodestatus;flux-cli getbenchmarks"
@@ -43,5 +58,7 @@ echo "adding launch status commands..."
     fi
 
   done
+  
+
 
 echo "all DONE! close ssh session and re-login then you can run toolbox, status, or benchmarks anytime and will get fluxnode and benchmark status upon SSH login every time."
