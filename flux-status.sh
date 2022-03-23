@@ -21,23 +21,6 @@ echo "adding aliases to profile....."
     #echo "$value" 
   done
 
-aliaslist="toolbox;status;benchmarks;restart_zelcash;restart_benchmarks;watch_logs;restart_watchdog"
-IFS=';' read -ra aliaslist_array <<< "$aliaslist"
-  for aliasvalue
-  in "${aliaslist_array[@]}"
-  do
-    ifAliasExist=$(cat ~/.profile | grep -c "$aliasvalue")
-    if [ $ifAliasExist -eq 1 ]; then
-      #string not contained in file
-      echo "echo 'avaliable short command: $aliasvalue'" >> ~/.bashrc
-      
-    else
-      #string is in file at least once
-      echo "already found $aliasvalue, not installing"
-    fi
-
-  done
-
 #add cmds to launch on ssh login for status update
 commands="flux-cli getzelnodestatus;flux-cli getbenchmarks"
 IFS=';' read -ra commands_array <<< "$commands"
@@ -58,6 +41,23 @@ echo "adding launch status commands..."
     fi
 
   done
+  
+aliaslist="toolbox;status;benchmarks;restart_zelcash;restart_benchmarks;watch_logs;restart_watchdog"
+IFS=';' read -ra aliaslist_array <<< "$aliaslist"
+  for aliasvalue
+  in "${aliaslist_array[@]}"
+  do
+    ifAliasExist=$(cat ~/.profile | grep -c "$aliasvalue")
+    if [ $ifAliasExist -eq 1 ]; then
+      #string not contained in file
+      echo "echo 'avaliable short command: $aliasvalue'" >> ~/.bashrc
+      
+    else
+      #string is in file at least once
+      echo "already found $aliasvalue, not installing"
+    fi
+
+  done 
   
 
 
