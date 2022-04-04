@@ -42,7 +42,7 @@ echo "adding launch status commands..."
 
   done
   
-aliaslist="toolbox;status;get_benchmarks;restart_zelcash;restart_benchmarks;watch_logs;restart_watchdog"
+aliaslist="toolbox;status;get_benchmarks;restart_zelcash;restart_benchmarks;watch_logs;restart_watchdog;cmds"
 IFS=';' read -ra aliaslist_array <<< "$aliaslist"
   for aliasvalue
   in "${aliaslist_array[@]}"
