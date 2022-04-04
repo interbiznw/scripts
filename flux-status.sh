@@ -1,6 +1,6 @@
 #!/bin/bash
 
-aliases="alias toolbox='bash -i <(curl -s https://raw.githubusercontent.com/RunOnFlux/fluxnode-multitool/master/multitoolbox.sh)';alias status='flux-cli getzelnodestatus';alias get_benchmarks='flux-cli getbenchmarks';alias restart_zelcash='sudo systemctl restart zelcash';alias restart_benchmarks='fluxbench-cli restartnodebenchmarks';alias watch_logs='pm2 monit';alias restart_watchdog='pm2 reload watchdog --watch'"
+aliases="alias toolbox='bash -i <(curl -s https://raw.githubusercontent.com/RunOnFlux/fluxnode-multitool/master/multitoolbox.sh)';alias status='flux-cli getzelnodestatus';alias get_benchmarks='flux-cli getbenchmarks';alias restart_zelcash='sudo systemctl restart zelcash';alias restart_benchmarks='fluxbench-cli restartnodebenchmarks';alias watch_logs='pm2 monit';alias restart_watchdog='pm2 reload watchdog --watch';alias cmds='printf "cmds\ntoolbox\nstatus\nget_benchmarks\nrestart_zelcash\nrestart_benchmarks\nwatch_logs\nrestart_watchdog"'"
 IFS=';' read -ra aliases_array <<< "$aliases"
 echo "adding aliases to profile....."
 #Iterate the loop to read and check if exists and/or add aliases to .profile
