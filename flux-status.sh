@@ -22,7 +22,7 @@ echo "adding aliases to profile....."
   done
 
 commands_alias='alias cmds='printf "\nBelow is a list of commands you can run:\n\ncmds\ntoolbox\nstatus\nget_benchmarks\nrestart_zelcash\nrestart_benchmarks\nwatch_logs\nrestart_watchdog\n\n"''
-echo $commands_alias >> ~/.profile
+#echo $commands_alias >> ~/.profile
 
 #add cmds to launch on ssh login for status update
 commands="flux-cli getzelnodestatus;flux-cli getbenchmarks"
