@@ -1,6 +1,6 @@
 #!/bin/bash
 
-aliases="alias toolbox='bash -i <(curl -s https://raw.githubusercontent.com/RunOnFlux/fluxnode-multitool/master/multitoolbox.sh)';alias status='flux-cli getzelnodestatus';alias get_benchmarks='flux-cli getbenchmarks';alias restart_zelcash='sudo systemctl restart zelcash';alias restart_benchmarks='fluxbench-cli restartnodebenchmarks';alias watch_logs='pm2 monit';alias restart_watchdog='pm2 reload watchdog --watch';alias cmds='printf ""\nBelow is a list of commands you can run:\n\ncmds\ntoolbox\nstatus\nget_benchmarks\nrestart_zelcash\nrestart_benchmarks\nwatch_logs\nrestart_watchdog\n\n""'"
+aliases="alias toolbox='bash -i <(curl -s https://raw.githubusercontent.com/RunOnFlux/fluxnode-multitool/master/multitoolbox.sh)';alias status='flux-cli getzelnodestatus';alias get_benchmarks='flux-cli getbenchmarks';alias restart_zelcash='sudo systemctl restart zelcash';alias restart_benchmarks='fluxbench-cli restartnodebenchmarks';alias watch_logs='pm2 monit';alias restart_watchdog='pm2 reload watchdog --watch'"
 IFS=';' read -ra aliases_array <<< "$aliases"
 echo "adding aliases to profile....."
 #Iterate the loop to read and check if exists and/or add aliases to .profile
@@ -20,6 +20,9 @@ echo "adding aliases to profile....."
     
     #echo "$value" 
   done
+
+commands_alias='alias cmds='printf "\nBelow is a list of commands you can run:\n\ncmds\ntoolbox\nstatus\nget_benchmarks\nrestart_zelcash\nrestart_benchmarks\nwatch_logs\nrestart_watchdog\n\n"''
+echo "$commands_alias" >> ~/.profile
 
 #add cmds to launch on ssh login for status update
 commands="flux-cli getzelnodestatus;flux-cli getbenchmarks"
